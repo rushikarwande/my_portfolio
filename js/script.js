@@ -154,7 +154,7 @@ if (window.gsap) {
             origin: 'top',
             distance: '80px',
             duration: 1000,
-            reset: true
+            reset: false
         });
 
         srtop.reveal('.experience .timeline', { delay: 400 });
