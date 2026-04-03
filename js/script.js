@@ -165,24 +165,41 @@ if (window.gsap) {
     const contactForm = document.getElementById('contact-form');
     
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault(); // Prevent default form submission
-            
-            // Show loading state
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
             const submitButton = contactForm.querySelector('button[type="submit"]');
             const originalText = submitButton.textContent;
             submitButton.textContent = 'Sending...';
             submitButton.disabled = true;
-            
-            // Simulate form submission delay
-            setTimeout(() => {
-                // Reset button state
+
+            try {
+                const formData = new FormData(contactForm);
+                formData.append('redirect', `${window.location.origin}${window.location.pathname.replace(/[^/]*$/, '')}thank-you.html`);
+
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json'
+                    },
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    contactForm.reset();
+                    window.location.href = 'thank-you.html';
+                    return;
+                }
+
+                showErrorMessage(result.message || 'Failed to send message. Please try again.');
+            } catch (error) {
+                showErrorMessage('Unable to send message right now. Please try again later.');
+            } finally {
                 submitButton.textContent = originalText;
                 submitButton.disabled = false;
-                
-                // Redirect to thank-you page
-                window.location.href = 'thank-you.html';
-            }, 1500);
+            }
         });
     }
     
@@ -196,7 +213,7 @@ if (window.gsap) {
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                 </svg>
-                <span>Thank you! Please email me directly at workwithsauravshinde@gmail.com</span>
+                <span>Thank you! Your message has been sent successfully.</span>
             </div>
         `;
         
