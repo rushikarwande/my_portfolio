@@ -1,0 +1,578 @@
+/* Custom CSS for Saurav's Portfolio */
+
+/* Global Styles */
+:root {
+    --neon-blue: #4361EE;
+    --neon-purple: #7209B7;
+    --neon-pink: #F72585;
+    --dark-bg: #121212;
+    --card-bg: rgba(30, 30, 30, 0.3);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--dark-bg);
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(67, 97, 238, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(114, 9, 183, 0.05) 0%, transparent 50%);
+    background-attachment: fixed;
+    overflow-x: hidden;
+}
+
+/* Custom Animations */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(67, 97, 238, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(67, 97, 238, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(67, 97, 238, 0); }
+}
+
+@keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes blob {
+    0% { transform: scale(1); }
+    33% { transform: scale(1.1); }
+    66% { transform: scale(0.9); }
+    100% { transform: scale(1); }
+}
+
+.animation-delay-2000 {
+    animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+    animation-delay: 4s;
+}
+
+.animate-blob {
+    animation: blob 7s infinite;
+}
+
+/* Glassmorphism */
+.backdrop-blur-lg {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+/* Neon Glow Effects */
+.hover\:shadow-glow:hover {
+    box-shadow: 0 0 15px rgba(67, 97, 238, 0.7);
+}
+
+.shadow-glow {
+    box-shadow: 0 0 15px rgba(67, 97, 238, 0.7);
+}
+
+/* Hero Section */
+.hero-title {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.hero-tagline {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+
+/* hero CTA: let GSAP control initial and final states */
+.hero-cta {
+  opacity: 0;                       /* start hidden (GSAP will animate this) */
+  transform: translateY(20px);      /* initial offset */
+  will-change: transform, opacity;  /* hint to browser for smooth animation */
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  transition: none !important;      /* remove any accidental CSS transition conflicts */
+  -webkit-transition: none !important;
+}
+
+
+/* Section Titles */
+.section-title {
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(to right, var(--neon-blue), var(--neon-purple));
+    border-radius: 3px;
+}
+
+/* Project Cards */
+.project-card {
+    transition: transform 0.5s ease;
+    perspective: 1000px;
+}
+
+.project-card:hover {
+    transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+}
+
+/* Skill Items */
+.skill-item {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* Shared interactive panel hover for content sections */
+.experience .content,
+.about-content > div,
+#contact .md\:w-1\/2 > div {
+    transition: box-shadow 0.35s ease, border-color 0.35s ease, background-color 0.35s ease;
+}
+
+.experience .content:hover,
+.about-content > div:hover,
+#contact .md\:w-1\/2 > div:hover,
+#contact .md\:w-1\/2 > div:focus-within {
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.35), 0 0 18px rgba(67, 97, 238, 0.28);
+    border-color: rgba(67, 97, 238, 0.65);
+    background-color: rgba(17, 24, 39, 0.92);
+}
+
+/* Contact Form */
+input:focus, textarea:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--neon-blue);
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .project-card:hover {
+        transform: translateY(-5px);
+    }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1e1e1e;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, var(--neon-blue), var(--neon-purple));
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, var(--neon-purple), var(--neon-pink));
+}
+
+/* Particles background styles (added from Gaurav portfolio) */
+#particles-js {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+   /* allow clicks through the canvas */
+}
+
+/* ensure main page content sits above particles */
+body > *:not(#particles-js) {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* Home hero with particles (only this section will have the animated background) */
+#home {
+  position: relative;
+  background-color: #000000; /* black background for home section */
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* Particles canvas positioned inside the home section */
+#home #particles-js {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: auto;
+}
+
+
+/* Keep home content above particles */
+#home .hero-content, #home > *:not(#particles-js) {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* Ensure navbar stays above everything */
+nav.fixed, nav.sticky, header.fixed {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999 !important;
+}
+
+/* Footer styling matching neon theme */
+.site-footer {
+  background: linear-gradient(90deg, rgba(17,24,39,1) 0%, rgba(10,10,10,1) 100%);
+  border-top: 1px solid rgba(255,45,149,0.08);
+  color: #d1d5db;
+  padding: 2.5rem 1rem;
+  text-align: center;
+  font-size: 0.95rem;
+}
+.site-footer a { color: #ff7ab8; text-decoration: none; }
+.site-footer .footer-inner { max-width: 1100px; margin: 0 auto; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
+.site-footer .brand { font-weight:700; color: #fff; font-size:1.05rem; }
+.site-footer .links { opacity:0.9; }
+
+/*original updated
+/* Force site-wide background to match Hero section color */
+html, body {
+    background-color: #000000 !important;
+    color: #ffffff;
+    min-height: 100%;
+}
+
+/* Make all sections use transparent background (so black shows through) */
+section {
+    background: transparent !important;
+}
+/*---------------
+/* Footer tweaks */
+/* Social icons: white by default, neon-blue on hover */
+.social-icon {
+  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 1px solid rgba(67, 97, 238, 0.25);
+  background: linear-gradient(135deg, rgba(31, 41, 55, 0.9), rgba(17, 24, 39, 0.65));
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: color .25s ease, background .25s ease, transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  color: #ffffff;
+}
+.social-icon .social-svg { width: 20px; height: 20px; color: inherit; fill: currentColor; }
+
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+/* Hover: icon color becomes neon-blue, slight lift */
+.social-icon:hover,
+.social-icon:focus {
+  color: #ffffff;
+  background: linear-gradient(135deg, rgba(67, 97, 238, 0.95), rgba(114, 9, 183, 0.95));
+  border-color: rgba(247, 37, 133, 0.55);
+  box-shadow: 0 0 18px rgba(67, 97, 238, 0.45);
+  transform: translateY(-4px) scale(1.04);
+}
+
+.social-icon:focus-visible {
+  outline: 2px solid rgba(247, 37, 133, 0.75);
+  outline-offset: 3px;
+}
+
+/* Quick links and contact text bold + white (already set via tailwind classes),
+   but ensure anchor hover uses the neon-blue color */
+.site-footer a { color: inherit; }
+.site-footer a:hover { color: #4361EE; }
+
+/* Small responsive tweak */
+@media (max-width: 768px) {
+  .site-footer .md\:w-1\/3 { width: 100%; }
+  #contact .backdrop-blur-lg {
+    padding: 1.5rem;
+  }
+  #contact .social-links {
+    justify-content: center;
+  }
+  .site-footer .footer-column {
+    text-align: center;
+  }
+  .site-footer .footer-column .social-links {
+    justify-content: center;
+  }
+  .site-footer .text-sm .flex {
+    justify-content: center;
+  }
+  .site-footer .text-sm {
+    display: grid;
+    gap: 0.9rem;
+  }
+}
+
+/* experience section starts */
+.experience {
+  position: relative;
+  padding: 4rem 0;
+}
+
+/* Match heading alignment to other sections (left, inline underline) */
+.experience .section-title {
+  display: inline-block;
+  text-align: left;
+}
+
+.experience .timeline {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 0.75rem;
+}
+
+.experience .timeline::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  background: linear-gradient(180deg, var(--neon-blue), var(--neon-purple));
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -3px;
+  z-index: 0; /* keep the spine behind cards and markers */
+}
+
+.experience .timeline > .container {
+  padding: 0 32px 48px;
+  position: relative;
+  background-color: inherit;
+  width: 50%;
+  margin: 2rem 0; /* consistent vertical spacing and keeps markers off the heading */
+}
+
+/*circles on timeline*/
+.experience .timeline > .container::after {
+  content: '';
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  right: -14px;
+  transform: none;
+  background-color: var(--neon-blue);
+  background: linear-gradient(180deg, var(--neon-blue), var(--neon-purple));
+  border: 3px solid var(--neon-blue);
+  top: 24px; /* align marker vertically with card content and away from heading */
+  border-radius: 50%;
+  z-index: 4; /* keep markers visually above the center spine */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M10 6V5a2 2 0 0 1 4 0v1h4a1 1 0 0 1 1 1v3.126l-2 1V9h-2v1.874L12 12.6 9 10.874V9H7v2.126l-2-1V7a1 1 0 0 1 1-1h4Zm2-1a1 1 0 0 0-1 1v1h2V6a1 1 0 0 0-1-1Z'/%3E%3Cpath d='M4 12.874V18a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5.126l-2.553 1.277a1 1 0 0 1-.894 0L12 12.126l-4.553 2.025a1 1 0 0 1-.894 0L4 12.874Z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 60%;
+  box-shadow: 0 0 0 12px #000000;
+  outline: 3px solid #000000;
+}
+
+/* Hide the leading marker if a container has no visible content above it */
+
+.experience .left {
+  left: 0;
+}
+
+.experience .right {
+  left: 50%;
+}
+
+/* arrows pointing right */
+.experience .left::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 22px;
+  width: 0;
+  z-index: 1;
+  right: 30px;
+  border: medium solid transparent; 
+  border-width: 10px 0 10px 10px;
+  border-color: transparent transparent transparent var(--neon-blue);
+}
+
+/* arrows pointing left  */
+.experience .right::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 22px;
+  width: 0;
+  z-index: 1;
+  left: 30px;
+  border: medium solid transparent;
+  border-width: 10px 10px 10px 0;
+  border-color: transparent var(--neon-blue) transparent transparent;
+}
+
+.experience .right::after {
+  left: -14px;
+}
+
+.experience .content {
+  background-color: rgba(17, 24, 39, 0.85);
+  border: 1px solid rgba(67, 97, 238, 0.35);
+  position: relative;
+  border-radius: 6px;
+  color: #e5e7eb;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.35);
+}
+
+.experience .content .tag {
+  font-size: 1.4rem;
+  padding: 1.2rem 1.5rem 0.25rem;
+  color: var(--neon-blue);
+}
+
+.experience .content .desc {
+  margin-left: 1.5rem;
+  padding-bottom: 1rem;
+  padding-right: 1.5rem;
+}
+
+.experience .content .desc h3 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #f9fafb;
+}
+
+.experience .content .desc p {
+  font-size: 1.3rem;
+  color: #cbd5e1;
+}
+
+/* view all button */
+.morebtn {
+  display: flex;
+  justify-content: center;
+}
+
+.morebtn .btn {
+  position: relative;
+  line-height: 0;
+  padding: 1.6rem 3rem;
+  border-radius: .5em;
+  transition: 0.5s;
+  color: #fff;
+  background: #2506ad;
+  box-shadow: 0px 5px 10px rgba(48, 68, 247, .6);
+  text-align: center;
+}
+
+.morebtn .btn span {
+  font-weight: 600;
+  font-size: 1.7rem;
+  font-family: 'Nunito', sans-serif;
+}
+
+.morebtn .btn i {
+  margin-left: 0.3rem;
+  font-size: 1.5rem;
+  transition: 0.3s;
+}
+
+.morebtn .btn:hover {
+  background: #1a047e;
+}
+
+.morebtn .btn:hover i {
+  transform: translateX(5px);
+}
+
+/* Media queries - Responsive timeline on screens less than 600px wide */
+@media screen and (max-width: 600px) {
+  .experience {
+    min-height: auto;
+    padding: 3rem 0;
+  }
+
+  .experience .timeline {
+    margin-top: 0.75rem;
+    padding-top: 0.25rem;
+  }
+
+  .experience .timeline::after {
+    left: 31px;
+  }
+
+  .experience .timeline > .container {
+    width: 100%;
+    padding-left: 5.5rem;
+    padding-right: 1rem;
+    padding-bottom: 2rem;
+    margin: 1rem 0;
+  }
+
+  .experience .timeline > .container::after {
+    left: 17px;
+    right: auto;
+    top: 22px;
+  }
+
+  .experience .timeline > .container::before {
+    left: 47px;
+    border: medium solid transparent;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent var(--neon-blue) transparent transparent;
+  }
+
+  .experience .left::after {
+    left: 17px;
+  }
+
+  .experience .right::after {
+    left: 17px;
+  }
+
+  .experience .right {
+    left: 0%;
+  }
+
+  .experience .content .tag {
+    font-size: 1.2rem;
+    padding: 1rem 1.1rem 0.2rem;
+  }
+
+  .experience .content .desc {
+    margin-left: 1.1rem;
+    padding-right: 1.1rem;
+  }
+
+  .experience .content .desc h3 {
+    font-size: 1.3rem;
+  }
+
+  .experience .content .desc p {
+    font-size: 1.05rem;
+  }
+
+  .morebtn {
+    margin-top: 3rem;
+  }
+}
+
+/* experience media queries ends */
+/* experience section ends */

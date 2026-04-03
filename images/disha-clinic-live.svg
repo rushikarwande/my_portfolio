@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Disha Clinic cover art</title>
+  <desc id="desc">Stylized clinic illustration with treatment cards and a warm medical interface look.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#120b1c"/>
+      <stop offset="50%" stop-color="#1b2f63"/>
+      <stop offset="100%" stop-color="#073b4c"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" x2="100%">
+      <stop offset="0%" stop-color="#f72585"/>
+      <stop offset="100%" stop-color="#4cc9f0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <circle cx="940" cy="130" r="145" fill="#4cc9f0" opacity=".11"/>
+  <circle cx="180" cy="560" r="180" fill="#f72585" opacity=".1"/>
+  <rect x="120" y="88" width="960" height="500" rx="38" fill="#101827" opacity=".85" stroke="#f72585" stroke-opacity=".28"/>
+  <rect x="180" y="150" width="320" height="376" rx="28" fill="#fff" opacity=".96"/>
+  <rect x="560" y="150" width="460" height="110" rx="26" fill="#111827" stroke="#fff" stroke-opacity=".08"/>
+  <rect x="560" y="285" width="220" height="105" rx="24" fill="#111827" stroke="#fff" stroke-opacity=".08"/>
+  <rect x="800" y="285" width="220" height="105" rx="24" fill="#111827" stroke="#fff" stroke-opacity=".08"/>
+  <rect x="560" y="415" width="460" height="110" rx="24" fill="#111827" stroke="#fff" stroke-opacity=".08"/>
+  <circle cx="340" cy="250" r="76" fill="url(#accent)" opacity=".95"/>
+  <path d="M296 250h88M340 206v88" stroke="#fff" stroke-width="18" stroke-linecap="round"/>
+  <rect x="230" y="366" width="220" height="18" rx="9" fill="#1f2937" opacity=".92"/>
+  <rect x="230" y="399" width="180" height="13" rx="6.5" fill="#64748b" opacity=".9"/>
+  <rect x="230" y="425" width="200" height="13" rx="6.5" fill="#94a3b8" opacity=".75"/>
+  <rect x="230" y="462" width="140" height="34" rx="17" fill="#4361ee"/>
+  <rect x="590" y="180" width="185" height="16" rx="8" fill="#f8fafc" opacity=".9"/>
+  <rect x="590" y="210" width="145" height="10" rx="5" fill="#94a3b8" opacity=".72"/>
+  <rect x="590" y="314" width="118" height="14" rx="7" fill="#f72585" opacity=".95"/>
+  <rect x="590" y="340" width="98" height="10" rx="5" fill="#cbd5e1" opacity=".65"/>
+  <rect x="830" y="314" width="122" height="14" rx="7" fill="#4cc9f0" opacity=".95"/>
+  <rect x="830" y="340" width="104" height="10" rx="5" fill="#cbd5e1" opacity=".65"/>
+  <rect x="590" y="447" width="285" height="15" rx="7.5" fill="#f8fafc" opacity=".88"/>
+  <rect x="590" y="475" width="360" height="10" rx="5" fill="#94a3b8" opacity=".7"/>
+  <text x="120" y="625" fill="#ffffff" font-family="Poppins, Arial, sans-serif" font-size="52" font-weight="700">Disha Clinic</text>
+  <text x="120" y="655" fill="#67e8f9" font-family="Poppins, Arial, sans-serif" font-size="22">Treatment highlights and appointment-ready design</text>
+</svg>
